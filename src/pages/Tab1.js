@@ -40,6 +40,8 @@ const Tab1 = () => {
     { name: "ゆうき" },
   ]);
 
+  const [difficulty, setDifficulty] = useState(["Regular", "Hard", "Extream"]);
+
   const [isCounterRoll, setIsCounterRoll] = useState(false);
 
   const [value, setValue] = useState(0);
@@ -78,12 +80,14 @@ const Tab1 = () => {
                       </IonButton>
                     );
                   })}
-                  <p className="ion-padding-top">または成功値を入力</p>
+                  <p className="ion-padding-top">
+                    または成功値を入力:{counterValues.active}
+                  </p>
                   <IonRange
                     pin={true}
                     value={counterValues.active}
                     snaps={true}
-                    step={10}
+                    step={5}
                     ticks={true}
                     onIonChange={(e) =>
                       setCounterValues((prev) => ({
@@ -103,12 +107,14 @@ const Tab1 = () => {
                       </IonButton>
                     );
                   })}
-                  <p className="ion-padding-top">または成功値を入力</p>
+                  <p className="ion-padding-top">
+                    または成功値を入力:{counterValues.passive}
+                  </p>
                   <IonRange
                     pin={true}
                     value={counterValues.passive}
                     snaps={true}
-                    step={10}
+                    step={5}
                     ticks={true}
                     onIonChange={(e) =>
                       setCounterValues((prev) => ({
@@ -167,7 +173,7 @@ const Tab1 = () => {
                     </IonButton>
                   );
                 })}
-                <p className="ion-padding-top">または成功値を入力</p>
+                <p className="ion-padding-top">または成功値を入力:{value}</p>
                 <IonRange
                   pin={true}
                   value={value}
@@ -195,6 +201,26 @@ const Tab1 = () => {
               <IonCheckbox />
               <IonLabel>ペナルティダイス</IonLabel>
             </IonItem>
+            <div
+              className="ion-padding-top"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+              }}
+            >
+              {difficulty.map((diff, i) => {
+                return (
+                  <IonButton
+                    key={i}
+                    fill={selectedDice === i ? "solid" : "outline"}
+                    onClick={() => setSelectedDice(i)}
+                  >
+                    {diff}
+                  </IonButton>
+                );
+              })}
+            </div>
             <IonItem className="ion-padding-top">
               <IonLabel position="stacked">
                 ロール結果を増減させる:{additionalValue}
