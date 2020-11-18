@@ -26,6 +26,7 @@ const Tab1 = () => {
     { name: "1D3" },
     { name: "1D4" },
     { name: "1D6" },
+    { name: "1D10" },
     { name: "1D100" },
   ]);
 
@@ -55,11 +56,11 @@ const Tab1 = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding-vertical">
-        <IonHeader collapse="condense">
+        {/* <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
+            <IonTitle>Tab 1</IonTitle>
           </IonToolbar>
-        </IonHeader>
+        </IonHeader> */}
         <IonCard>
           <IonCardContent>
             <IonItem>
@@ -243,6 +244,7 @@ const Tab1 = () => {
         <IonButton expand="block" className="ion-padding-horizontal">
           ロール
         </IonButton>
+        {/* <div className="ion-padding-vertical" /> */}
       </IonContent>
     </IonPage>
   );
