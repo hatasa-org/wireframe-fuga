@@ -41,6 +41,7 @@ const Tab1 = () => {
   ]);
 
   const [difficulty, setDifficulty] = useState(["Regular", "Hard", "Extream"]);
+  const [selectedDifficulty, setSelectedDifficulty] = useState(0);
 
   const [isCounterRoll, setIsCounterRoll] = useState(false);
 
@@ -213,8 +214,8 @@ const Tab1 = () => {
                 return (
                   <IonButton
                     key={i}
-                    fill={selectedDice === i ? "solid" : "outline"}
-                    onClick={() => setSelectedDice(i)}
+                    fill={selectedDifficulty === i ? "solid" : "outline"}
+                    onClick={() => setSelectedDifficulty(i)}
                   >
                     {diff}
                   </IonButton>
