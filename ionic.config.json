@@ -1,0 +1,7 @@
+{
+  "name": "wire-fuga",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
