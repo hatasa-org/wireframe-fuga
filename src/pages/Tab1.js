@@ -29,6 +29,8 @@ const Tab1 = () => {
     { name: "1D100" },
   ]);
 
+  const [counterValues, setCounterValues] = useState({ active: 0, passive: 0 });
+
   const [selectedDice, setSelectedDice] = useState(null);
 
   const [players, setPlayers] = useState([
@@ -79,8 +81,16 @@ const Tab1 = () => {
                   <p className="ion-padding-top">または成功値を入力</p>
                   <IonRange
                     pin={true}
-                    value={value}
-                    onIonChange={(e) => setValue(e.detail.value)}
+                    value={counterValues.active}
+                    snaps={true}
+                    step={10}
+                    ticks={true}
+                    onIonChange={(e) =>
+                      setCounterValues((prev) => ({
+                        ...prev,
+                        active: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <div className="ion-padding-top">
@@ -96,8 +106,16 @@ const Tab1 = () => {
                   <p className="ion-padding-top">または成功値を入力</p>
                   <IonRange
                     pin={true}
-                    value={value}
-                    onIonChange={(e) => setValue(e.detail.value)}
+                    value={counterValues.passive}
+                    snaps={true}
+                    step={10}
+                    ticks={true}
+                    onIonChange={(e) =>
+                      setCounterValues((prev) => ({
+                        ...prev,
+                        passive: e.target.value,
+                      }))
+                    }
                   />
                 </div>
               </div>
@@ -189,6 +207,7 @@ const Tab1 = () => {
                 snaps={true}
                 step={10}
                 ticks={true}
+                color={additionalValue >= 0 ? "primary" : "danger"}
                 onIonChange={(e) => setAdditionalValue(e.detail.value)}
               />
             </IonItem>
