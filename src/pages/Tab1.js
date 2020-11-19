@@ -18,6 +18,7 @@ import {
   IonIcon,
   IonCheckbox,
   IonInput,
+  IonToggle,
 } from "@ionic/react";
 import "./Tab1.css";
 
@@ -64,15 +65,58 @@ const Tab1 = () => {
         <IonCard>
           <IonCardContent>
             <IonItem>
-              <IonCheckbox
+              {/* <IonCheckbox
                 checked={isCounterRoll}
                 onIonChange={() => setIsCounterRoll((prev) => !prev)}
-              />
+              /> */}
               <IonLabel>対抗ロール</IonLabel>
+              <IonToggle
+                slot="start"
+                checked={isCounterRoll}
+                onIonChange={(e) =>
+                  setIsCounterRoll((prev) => e.target.checked)
+                }
+              />
             </IonItem>
-            {isCounterRoll && (
-              <div>
-                <div className="ion-padding-top">
+          </IonCardContent>
+        </IonCard>
+        {isCounterRoll && (
+          <div>
+            <IonCard>
+              <IonCardHeader>
+                <IonToolbar>
+                  <IonTitle>能動側を選択</IonTitle>
+                </IonToolbar>
+              </IonCardHeader>
+              <IonCardContent>
+                <p>プレイヤーの能力、技能から選択</p>
+                {players.map((player, i) => {
+                  return (
+                    <IonButton fill="outline" key={i}>
+                      {player.name}
+                    </IonButton>
+                  );
+                })}
+                <p className="ion-padding-top">
+                  または成功値を入力:{counterValues.active}
+                </p>
+                <IonRange
+                  pin={true}
+                  value={counterValues.active}
+                  snaps={true}
+                  step={5}
+                  ticks={true}
+                  onIonChange={(e) =>
+                    setCounterValues((prev) => ({
+                      ...prev,
+                      active: e.target.value,
+                    }))
+                  }
+                />
+              </IonCardContent>
+            </IonCard>
+
+            {/* <div className="ion-padding-top">
                   <IonLabel>能動側を選択</IonLabel>
                   <p>プレイヤーの能力、技能から選択</p>
                   {players.map((player, i) => {
@@ -98,38 +142,71 @@ const Tab1 = () => {
                       }))
                     }
                   />
-                </div>
-                <div className="ion-padding-top">
-                  <IonLabel>受動側を選択</IonLabel>
-                  <p>プレイヤーの能力、技能から選択</p>
-                  {players.map((player, i) => {
-                    return (
-                      <IonButton fill="outline" key={i}>
-                        {player.name}
-                      </IonButton>
-                    );
-                  })}
-                  <p className="ion-padding-top">
-                    または成功値を入力:{counterValues.passive}
-                  </p>
-                  <IonRange
-                    pin={true}
-                    value={counterValues.passive}
-                    snaps={true}
-                    step={5}
-                    ticks={true}
-                    onIonChange={(e) =>
-                      setCounterValues((prev) => ({
-                        ...prev,
-                        passive: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-              </div>
-            )}
-          </IonCardContent>
-        </IonCard>
+                </div> */}
+
+            <IonCard>
+              <IonCardHeader>
+                <IonToolbar>
+                  <IonTitle>受動側を選択</IonTitle>
+                </IonToolbar>
+              </IonCardHeader>
+              <IonCardContent>
+                <p>プレイヤーの能力、技能から選択</p>
+                {players.map((player, i) => {
+                  return (
+                    <IonButton fill="outline" key={i}>
+                      {player.name}
+                    </IonButton>
+                  );
+                })}
+                <p className="ion-padding-top">
+                  または成功値を入力:{counterValues.passive}
+                </p>
+                <IonRange
+                  pin={true}
+                  value={counterValues.passive}
+                  snaps={true}
+                  step={5}
+                  ticks={true}
+                  onIonChange={(e) =>
+                    setCounterValues((prev) => ({
+                      ...prev,
+                      passive: e.target.value,
+                    }))
+                  }
+                />
+              </IonCardContent>
+            </IonCard>
+
+            {/* <div className="ion-padding-top">
+              <IonLabel>受動側を選択</IonLabel>
+              <p>プレイヤーの能力、技能から選択</p>
+              {players.map((player, i) => {
+                return (
+                  <IonButton fill="outline" key={i}>
+                    {player.name}
+                  </IonButton>
+                );
+              })}
+              <p className="ion-padding-top">
+                または成功値を入力:{counterValues.passive}
+              </p>
+              <IonRange
+                pin={true}
+                value={counterValues.passive}
+                snaps={true}
+                step={5}
+                ticks={true}
+                onIonChange={(e) =>
+                  setCounterValues((prev) => ({
+                    ...prev,
+                    passive: e.target.value,
+                  }))
+                }
+              />
+            </div> */}
+          </div>
+        )}
         {!isCounterRoll && (
           <div>
             <IonCard>
