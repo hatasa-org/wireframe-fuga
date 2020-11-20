@@ -56,7 +56,7 @@ const Tab1 = () => {
           <IonTitle>Tab 1</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding-vertical">
+      <IonContent>
         {/* <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle>Tab 1</IonTitle>
